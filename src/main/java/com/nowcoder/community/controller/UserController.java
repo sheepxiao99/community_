@@ -8,6 +8,7 @@ import com.nowcoder.community.service.UserService;
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
 import com.nowcoder.community.util.HostHolder;
+import com.nowcoder.community.util.RedisKeyUtil;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
 import org.apache.commons.lang3.StringUtils;
@@ -17,17 +18,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -103,7 +103,8 @@ public class UserController implements CommunityConstant {
         return CommunityUtil.getJSONString(0);
     }
 
-    /**  修改用户头像
+    /**
+     * 修改用户头像
      *
      * @param headerImage
      * @param model
@@ -147,7 +148,8 @@ public class UserController implements CommunityConstant {
     }
 
 
-    /** 获取用户头像
+    /**
+     * 获取用户头像
      *
      * @param fileName
      * @param response
@@ -208,4 +210,27 @@ public class UserController implements CommunityConstant {
         return "/site/profile";
     }
 
+    // 修改密码
+    @RequestMapping(path = "/modify", method = RequestMethod.POST)
+    public String login(String oldPassword, String newPassword, Model model, HttpServletResponse response) {
+        // 先检查是否为空
+        if (StringUtils.isBlank(oldPassword) || StringUtils.isBlank(newPassword)) {
+            model.addAttribute("codePassword", "输入框不能为空");
+            return "/site/setting";
+        }
+
+        // 使用md5盐值加密，修改密码
+        String salt = hostHolder.getUser().getSalt();
+
+        // 取用户的id从数据库中查密码,和旧密码相比较
+        if (!hostHolder.getUser().getPassword().equals(CommunityUtil.md5(oldPassword + salt))) {
+            model.addAttribute("codePassword", "输入原密码有误，请重新输入");
+            return "/site/setting";
+        }
+
+        String newPass = CommunityUtil.md5(newPassword + salt);
+        userService.updatePassword(hostHolder.getUser().getId(), newPass);
+        model.addAttribute("codePassword", "密码修改成功");
+        return "/site/setting";
+    }
 }

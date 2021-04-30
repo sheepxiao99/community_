@@ -7,7 +7,7 @@
 	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
 	<link rel="stylesheet" th:href="@{/css/letter.css}" />
-	<title>牛客网-私信列表</title>
+	<title>开发者社区论坛-私信列表</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -160,7 +160,7 @@
 		</div>
 
 		<!-- 尾部 -->
-		<footer class="bg-dark">
+		<footer class="bg-dark" th:replace="index::footers">
 			<div class="container">
 				<div class="row">
 					<!-- 二维码 -->

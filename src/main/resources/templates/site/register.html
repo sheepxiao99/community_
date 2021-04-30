@@ -7,7 +7,7 @@
 	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
 	<link rel="stylesheet" th:href="@{/css/login.css}" />
-	<title>牛客网-注册</title>
+	<title>开发者社区论坛-注册</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -62,12 +62,14 @@
 		<!-- 内容 -->
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
-				<h3 class="text-center text-info border-bottom pb-3">注&nbsp;&nbsp;册</h3>
+				<h3 class="text-center text-info border-bottom pb-3">欢&nbsp;&nbsp;迎&nbsp;&nbsp;注&nbsp;&nbsp;册</h3>
 				<form class="mt-5" method="post" th:action="@{/register}">
 					<div class="form-group row">
-						<label for="username" class="col-sm-2 col-form-label text-right">账号:</label>
-						<div class="col-sm-10">
+
+						<label for="username" class="col-sm-2 col-form-label text-right"><img height="30" width="30"  src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E8%B4%A6%E5%8F%B7.png">账号:</label>
+						<div class="col-sm-8">
 							<input type="text"
+								   style="width:500px"
 								   th:class="|form-control ${usernameMsg!=null?'is-invalid':''}|"
 								   th:value="${user!=null?user.username:''}"
 								   id="username" name="username" placeholder="请输入您的账号!" required>
@@ -77,9 +79,11 @@
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="password" class="col-sm-2 col-form-label text-right">密码:</label>
-						<div class="col-sm-10">
+
+						<label for="password" class="col-sm-2 col-form-label text-right"><img height="30" width="30"  src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E5%AF%86%E7%A0%81.png">密码:</label>
+						<div class="col-sm-8">
 							<input type="password"
+								   style="width:500px"
 								   th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|"
 								   th:value="${user!=null?user.password:''}"
 								   id="password" name="password" placeholder="请输入您的密码!" required>
@@ -89,9 +93,11 @@
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="confirm-password" class="col-sm-2 col-form-label text-right">确认密码:</label>
-						<div class="col-sm-10">
+
+						<label for="confirm-password" class="col-sm-2 col-form-label text-right"><img height="30" width="30" src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E7%A1%AE%E8%AE%A4%E5%AF%86%E7%A0%81%20%281%29.png">确认密码:</label>
+						<div class="col-sm-8">
 							<input type="password" class="form-control"
+								   style="width:500px"
 								   th:value="${user!=null?user.password:''}"
 								   id="confirm-password" placeholder="请再次输入密码!" required>
 							<div class="invalid-feedback">
@@ -100,9 +106,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="email" class="col-sm-2 col-form-label text-right">邮箱:</label>
-						<div class="col-sm-10">
+
+						<label for="email" class="col-sm-2 col-form-label text-right"><img height="30" width="30"  src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E9%82%AE%E7%AE%B1.png">邮箱:</label>
+						<div class="col-sm-8">
 							<input type="email"
+								   style="width:500px"
 								   th:class="|form-control ${emailMsg!=null?'is-invalid':''}|"
 								   th:value="${user!=null?user.email:''}"
 								   id="email" name="email" placeholder="请输入您的邮箱!" required>
@@ -113,8 +121,8 @@
 					</div>
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
-						<div class="col-sm-10 text-center">
-							<button type="submit" class="btn btn-info text-white form-control">立即注册</button>
+						<div class="col-sm-8 text-center">
+							<button type="submit" class="btn btn-info text-white center-pill form-control">立即注册</button>
 						</div>
 					</div>
 				</form>				
@@ -122,7 +130,7 @@
 		</div>
 
 		<!-- 尾部 -->
-		<footer class="bg-dark">
+		<footer class="bg-dark" th:replace="index::footers">
 			<div class="container">
 				<div class="row">
 					<!-- 二维码 -->
@@ -184,8 +192,9 @@
 		</footer>
 	</div>
 
-	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
 	<script th:src="@{/js/global.js}"></script>
 	<script th:src="@{/js/register.js}"></script>

@@ -21,7 +21,9 @@ body {
 }
 
 header .navbar-brand {
-	background: url('http://static.nowcoder.com/images/res/logo/logo-v3.png') no-repeat;
+	/*background: url('http://static.nowcoder.com/images/res/logo/logo-v3.png') no-repeat;*/
+	/*background: url('https://gitee.com/Wang_CongA/image/raw/master/img/%E7%A4%BE%E5%8C%BA-%E7%A4%BE%E5%8C%BA%E8%AE%BA%E5%9D%9B.png') no-repeat;*/
+	background: url('https://gitee.com/Wang_CongA/image/raw/master/img/20210402144725.png') no-repeat;
 	background-size: 147px 42px;
 	width: 147px;
 	height: 42px;
@@ -66,7 +68,7 @@ footer .company-info li {
 }
 
 .main .container {
-	background: #fff;
+	background: #adb5bd;
 	padding: 20px;
 }
 
@@ -91,7 +93,7 @@ a:hover {
 }
 
 .font-size-12 {
-	font-size: 12px;
+	font-size: 14px;
 }
 .font-size-14 {
 	font-size: 14px;
@@ -131,7 +133,11 @@ a:hover {
 }
 
 .bg-gray {
-	background: #eff0f2;
+	/*background: #eff0f2;*/
+	background: rgb(33 37 41 / 79%);
+}
+.bg-write {
+	background: #00D6D6;
 }
 
 .user-header {

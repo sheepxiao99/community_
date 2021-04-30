@@ -52,17 +52,17 @@ public class SpringBootTests {
 //        discussPostService.updateStatus(data.getId(), 2);
     }
 
-    @Test
+//    @Test
     public void test1() {
         System.out.println("test1");
     }
 
-    @Test
+//    @Test
     public void test2() {
         System.out.println("test2");
     }
 
-    @Test
+//    @Test
     public void testFindById() {
         DiscussPost post = discussPostService.findDiscussPostById(data.getId());
         Assert.assertNotNull(post);
@@ -70,7 +70,7 @@ public class SpringBootTests {
         Assert.assertEquals(data.getContent(), post.getContent());
     }
 
-    @Test
+//    @Test
     public void testUpdateScore() {
         int rows = discussPostService.updateScore(data.getId(), 2000.00);
         Assert.assertEquals(1, rows);

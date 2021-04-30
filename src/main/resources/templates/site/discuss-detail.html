@@ -8,7 +8,7 @@
 	<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
 	<link rel="stylesheet" th:href="@{/css/discuss-detail.css}" />
-	<title>牛客网-帖子详情</title>
+	<title>开发者社区论坛-帖子详情</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -66,8 +66,9 @@
 			<div class="container">
 				<!-- 标题 -->
 				<h6 class="mb-4">
-					<img src="http://static.nowcoder.com/images/img/icons/ico-discuss.png"/>
-					<span th:utext="${post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</span>
+<!--					<img src="http://static.nowcoder.com/images/img/icons/ico-discuss.png"/>-->
+					<img height="40" width="40" src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E6%A0%87%E9%A2%98%E6%A8%A1%E5%9D%97.png"/>
+					<span id="postTitle" th:utext="${post.title}" >备战春招，面试刷题跟他复习，一个月全搞定！</span>
 					<div class="float-right">
 						<input type="hidden" id="postId" th:value="${post.id}">
 
@@ -78,9 +79,9 @@
 						  sec:authentication="principal.authorities" 当前用户全部角色
 						-->
 						<button type="button" class="btn btn-danger btn-sm" id="topBtn"
-							th:disabled="${post.type==1}" sec:authorize="hasAnyAuthority('moderator')">置顶</button>
+							th:disabled="${post.type==1}" sec:authorize="hasAnyAuthority('moderator')">↑置顶↑</button>
 						<button type="button" class="btn btn-danger btn-sm" id="wonderfulBtn"
-							th:disabled="${post.status==1}" sec:authorize="hasAnyAuthority('moderator')">加精</button>
+							th:disabled="${post.status==1}" sec:authorize="hasAnyAuthority('moderator')">※加精※</button>
 						<button type="button" class="btn btn-danger btn-sm" id="deleteBtn"
 							th:disabled="${post.status==2}" sec:authorize="hasAnyAuthority('admin')">删除</button>
 					</div>
@@ -91,17 +92,19 @@
 						<img th:src="${user.headerUrl}" class="align-self-start mr-4 rounded-circle user-header" alt="用户头像" >
 					</a>
 					<div class="media-body">
-						<div class="mt-0 text-warning" th:utext="${user.username}">寒江雪</div>
+						<div id="userName" class="mt-0 text-warning" th:utext="${user.username}">寒江雪</div>
 						<div class="text-muted mt-3">
+							<img height="20" width="20" src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E5%8F%91%E5%B8%83%E6%97%B6%E9%97%B4.png">
 							发布于 <b th:text="${#dates.format(post.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</b>
 							<ul class="d-inline float-right">
 								<li class="d-inline ml-2">
 									<a href="javascript:;" th:onclick="|like(this,1,${post.id},${post.userId},${post.id});|" class="text-primary">
+										<img height="30" width="30" src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E7%82%B9%E8%B5%9E.png">
 										<b th:text="${likeStatus==1?'已赞':'赞'}">赞</b> <i th:text="${likeCount}">11</i>
 									</a>
 								</li>
 								<li class="d-inline ml-2">|</li>
-								<li class="d-inline ml-2"><a href="#replyform" class="text-primary">回帖 <i th:text="${post.commentCount}">7</i></a></li>
+								<li class="d-inline ml-2"><a href="#replyform" class="text-primary"><img height="25" width="25" src="https://guli-file-upload.oss-cn-beijing.aliyuncs.com/niuke/%E5%9B%9E%E5%B8%96.png"/>回帖 <i th:text="${post.commentCount}">7</i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -124,6 +127,7 @@
 						<h6><b class="square"></b> <i th:text="${post.commentCount}">30</i>条回帖</h6>
 					</div>
 					<div class="col-4 text-right">
+
 						<a href="#replyform" class="btn btn-primary btn-sm">&nbsp;&nbsp;回&nbsp;&nbsp;帖&nbsp;&nbsp;</a>
 					</div>
 				</div>
@@ -137,7 +141,7 @@
 							<div class="mt-0">
 								<span class="font-size-12 text-success" th:utext="${cvo.user.username}">掉脑袋切切</span>
 								<span class="badge badge-secondary float-right floor">
-									<i th:text="${page.offset + cvoStat.count}">1</i>#
+									<i th:text="${page.offset + cvoStat.count}">1</i>楼
 								</span>
 							</div>
 							<div class="mt-2" th:utext="${cvo.comment.content}">
@@ -245,7 +249,7 @@
 		</div>
 
 		<!-- 尾部 -->
-		<footer class="bg-dark">
+		<footer class="bg-dark" th:replace="index::footers">
 			<div class="container">
 				<div class="row">
 					<!-- 二维码 -->
@@ -311,5 +315,16 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
 	<script th:src="@{/js/global.js}"></script>
 	<script th:src="@{/js/discuss.js}"></script>
+<style>
+	#postTitle{
+		color:blue;
+		font-weight:bold;
+		font-size: 25px;
+	}
+	#userName{
+		color: #515151;
+		font-size: 20px;
+	}
+</style>
 </body>
 </html>

@@ -15,10 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
@@ -145,7 +142,8 @@ public class LoginController implements CommunityConstant {
      * @return
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(String username, String password, String code, boolean rememberme,
+    public String login(String username, String password, String code,
+                        @RequestParam(value="rememberme" ,required = false,defaultValue = "true") boolean rememberme,
                         Model model,HttpServletResponse response,
                         @CookieValue("kaptchaOwner") String kaptchaOwner) {
         // 检查验证码
